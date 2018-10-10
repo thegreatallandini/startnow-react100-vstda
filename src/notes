@@ -1,0 +1,324 @@
+concat() - joins two or more arrays , and returns a copy of the joined arrays.
+
+the concat method creates a new array consisting of the elements in the object on which it is called, followed in order
+
+copyWithin() - copies array elements within the array, to and from specified positions
+
+entries() - returns a key/value array iteration object 
+
+every() - checks if every element in an array pass a test
+
+fill() - fill the elements in an array with a static value
+
+filter() - creates a new array with every element in an array that pass a test
+
+find() - returns the value of the first element in an array that pass a test
+
+findIndex() - returns the index of the first element in an array that pass a test
+
+forEach() - calls a function for each array element
+
+from() - creates an array from an object
+
+includes() - check if an array contains the specified element
+
+indexOf() - search the array for an element and returns its position 
+
+isArray() - checks whether an object is an array 
+
+join() - joins all elements of an array into a string
+
+keys() - returns a array iteration object, containing the keys of the original array
+
+lastIndexOf() - search the array for an element, starting at the end, and returns its position
+
+map() - creates a new array with the result of calling a function for each array element
+
+pop() - removes the last element of an array and returns that element
+
+push() - adds new element to the end of an array , and returns the length
+
+reduce() - reduce the values of an array to a single value (going left to right)
+
+reduceRight() - reduce the values of an array to a single value (going right to left)
+
+
+
+//Breaking down React Components
+
+class App extends React.Component
+
+
+React.Component= {
+constructor : function(){}\
+render: function(){}
+setState: function(){}
+}
+
+
+
+'this' always refers to the component youre in
+
+
+
+constructor initially sets state for whatever you wan tto create when the app is invoked.
+also runs when class is invoked immediatly
+
+instantiate a class and create a function
+
+what does the super do ?
+
+inside of our contructor , also invoke reactcomponent 
+because i want all the propeeties in react.component
+
+If we declare the constructor , we must declare the super.
+//
+what does bind do ?
+
+it takes whatever the context of what this is and overwrites it with whatever you set it as
+
+bind over rides what this means
+//
+
+// react forum notes 
+
+babel will take jsx which the browser cant read and turns it int something that it can read
+//
+class GroceryList {
+    constructor(groceries) {
+        this.state= {
+            groceries : ['bananas'].concat(groceries)
+        }
+    }
+}
+
+<GroceryList name = 'apple'
+            fruit = 'kiwi'
+            vegetables = ['pickles', 'squash']
+            />
+
+
+//
+
+
+
+class GroceryList {
+    constructor(groceries) {
+        this.state= {
+            groceries : []
+    }
+}
+
+render() {
+    return(
+        <div>
+        <h1>GroceryList</h1>
+        <ul>banana</ul>
+        </div>
+    )
+}
+
+ReactDOM.render(<GroceryList name='apple' fruits={['kiwi', 'pear']} /> , 
+document.getElementById('root')) ;
+
+deleteItem(event) {
+ //   console.log(event.target.innerText)
+ this.setState({
+     groceries: this.state.groceries.filter( e => e !== event.target.innerText)
+ })
+}
+
+<ul>
+ {this.state.groceries.map(e => 
+ <li onClick= {deleteItem}
+
+
+<GroceryList name = 'apple'
+            fruit = 'kiwi'
+            vegetables = ['pickles', 'squash']
+            />
+
+
+//
+function UserGreeting(props) {
+    return <h1>Welcome Back</h1>;
+}
+
+function GuestGreeting(props) {
+    return<h1>Please sign up</h1>;
+}
+
+pseudo class or element // (:)
+
+p:first class
+
+first of type
+
+1
+
+<div>
+    <p>
+        <p>
+    </div>
+
+!important
+
+highest to Lowest Specificity
+inline styles have the highest Specificity
+
+
+
+//
+Buckets 
+
+inline style -> id -> class -> Element -> pseudo
+1000            100     10        1         .1
+// 
+
+each bucket consists of a stack 
+
+what were targeting is on the very right side 
+
+css box model 
+<div>
+    <p>
+        <p>
+
+        </div>
+
+content is described by the width and the height of an element
+
+
+Redux forum questions 
+//
+Component based state limitations 
+
+1. Not scalable , unidirectional data creates complexity in large application
+
+2.hard to create a single source of truth where data should live
+
+3. EVent delegation
+
+//array methods
+
+the find() method returns the value of the first element in the array that satisfies the provided testing function 
+
+the findIndex() method returns the index of the first element in the array that satisfies the provided testing function.
+
+//conditional rendering
+
+conditional rendering in react works the same way conditions work in javascript . 
+use javascript operators like if or the conditional operator to create elements representing the current state and let react update the ui to match them
+
+consider these two components 
+
+function UserGreeting(props) {
+    return <h1>Welcome Back!</h1>
+}
+
+function GuestGreeting(props) {
+    return <h1>Please sign up.</h1>
+}
+
+We'll create a greeting component that displays either of these components depending on whether a user is logged on.
+
+function Greeting(props) {
+    const isLoggedIn = props.isLoggedIn;
+    if(isLoggedIn) {
+        return <userGreeting />
+    }
+    return <GuestGreeting />
+}
+
+//
+Element variables 
+
+You can use variables to stoere elements . this can help you conditionally renders part of the component while the rest of the out put doesnt change.
+
+//
+
+component will mount function
+
+ //example for component will mount 
+
+ Now that the props and state are set , we finally enter the realm of life cycle methods .
+ The first true life cycle method called is comoponentWillMount(). 
+ This method is only called one time , which is before the initial render . Since this method is called before render(),
+ our component will not have access to the native UI ( DOM , etc).
+
+ We also will not have access to the children refs , because they are not created yet.
+
+ The componentWillMount() is a chance for us to handle configuration , update our state , and in general prepare
+ for the first render . At this point , props and initial state are defined .
+We can safely query this.props and this.state , knowing with certainty they are the current values.
+
+This means we can start performing calculations or processes based on prop values.
+
+
+example of componentWillMount() 
+//
+
+import React from 'react';
+import classNames from 'classnames';
+
+class Person extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {mode: undefined};
+    }
+
+componentWillMount() {
+    let mode;
+
+    if(this.props.age > 70) {
+        mode = 'old';
+    }
+    else if (this.props.age ) {
+
+    }
+}
+
+}
+
+//
+Questions about component will mount , didmount , unmount
+
+componentWillMount(){
+    this is called before the component is rendered for the first time
+}
+
+componentDidMount(){}
+
+componentUnMount(){}
+//
+
+//vstda function //
+
+ // var newArray = [...this.state.list]
+  // newArray.splice(key, 1)
+
+//   editTodo(id) {
+// console.log('clicked edit');
+//   const list = [...this.state.list];
+
+//   const todoIndex = list.findIndex(t => t.id === id)
+
+//   list[todoIndex].input = this.state.editedInput;
+
+//     this.setState({
+
+//       list: list
+
+//     })
+
+//   }
+
+
+//
+
+the edit button will convert the state of isEditing to true . 
+
+if statement for the pop up input to shown only when isEditing is true
+
+the save button will replace whatever is in the initial list item input with whatever in the the edit input .
+it will also set the state of isEditing back to false.
